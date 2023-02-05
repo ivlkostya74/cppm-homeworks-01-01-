@@ -8,73 +8,81 @@
 
 int main()
 {
-    std::ifstream fin("TextFile1.txt"); // открытие файла
-    if (!fin.is_open()) {
-        std::cout << "неудачное открытие файла\n";
-        return 0;
-    }
-    
-    int size, nambe;
-    fin >> size;
-    
-    int* arr = new int[size];
-    int* arr1 = new int[size];
-    for (int i = 0; i < size; i++) {
-        fin >> nambe;
-        arr[i] = nambe;
-         std::cout <<"i  " << i<<"= "<<arr[i]<<" ";
-    }
-    std::cout <<  "\n ";
+	setlocale(LC_ALL, "RUSSIAN");
+	std::cout << " открытие файла\n";
+	std::ifstream fin("TextFile1.txt"); // открытие файла
+	if (!fin.is_open()) {
+		std::cout << "неудачное открытие файла\n";
+		return 0;
+	}
 
-    for ( int i = 0; i < size-1; i++) {
-        if (i == 0) arr1[i] = arr[size - 1];
-        arr1[i] = arr[i + 1];
-        std::cout << "i  " << i << "= " << arr1[i] << " ";
+	int size;
+	fin >> size;
 
-    }
-    arr1[size - 1] = arr[0];
-    delete arr;
-    int size1;
-    fin >> size1;
+	int* arr = new int[size];
+	int* arr1 = new int[size];
+	for (int i = 0; i < size; i++) {
+		fin >> arr[i];
+		//   arr[i] = nambe;
+		  //  std::cout <<"i  " << i<<"= "<<arr[i]<<" ";
+	}
+	std::cout << "\n ";
 
-    int* arr3 = new int[size1];
-    int* arr2 = new int[size1];
-    for (int i = 0; i < size1; i++) {
-        fin >> nambe;
-        arr3[i] = nambe;
-        std::cout << "i  " << i << "= " << arr3[i] << " ";
-    }
-    std::cout << "\n ";
+	for (int i = 0; i < size - 1; i++) {
+		if (i == 0) arr1[i] = arr[size - 1];
+		arr1[i] = arr[i + 1];
+		//    std::cout << "i  " << i << "= " << arr1[i] << " ";
 
-    for (int i = 0; i < size1-1; i++) {
-        if (i == 0) arr2[i] = arr3[size1 - 1];
-        arr2[i] = arr3[i + 1];
-        std::cout << "i  " << i << "= " << arr2[i] << " ";
+	}
+	arr1[size - 1] = arr[0];
+	delete[] arr;
+	int size1;
+	fin >> size1;
 
-    }
-    arr2[size - 1] = arr3[0];
-    delete arr3;
-    int a = 0;
+	int* arr3 = new int[size1];
+	int* arr2 = new int[size1];
+	for (int i = 0; i < size1; i++) {
+		fin >> arr3[i];
+		//   arr3[i] = nambe;
+		std::cout << "i  " << i << "= " << arr3[i] << " ";
+	}
+	//  std::cout << "\n ";
 
-    std::ofstream fout("out.txt");
-    if (!fout.is_open()) {
-        std::cout << "Не получилось открыть фaйл out.txt" << std::endl;    delete arr1,arr2;
-        return 1;
-    }
-    fout << size1 << "\n";
-    for (int i = 0; i <size1 ; i++) {
-        fout << arr2[i] << " ";
-    }
-    fout << std::endl;
-    fout << size << "\n";
-    for (int i = 0; i < size; i++) {
-        fout << arr1[i] << " ";
-    }
-    fout << std::endl;
+	for (int i = 0; i < size1 - 1; i++) {
+		if (i == 0) arr2[i] = arr3[size1 - 1];
+		arr2[i] = arr3[i + 1];
+		//std::cout << "i  " << i << "= " << arr2[i] << " ";
 
-    delete arr1, arr2;
+	}
+	arr2[size1 - 1] = arr3[0];
+	delete[] arr3;
+	int a = 0;
 
-    fout.close();
+
+	std::cout << " запись файла\n";
+
+	std::ofstream fout("out.txt");
+	if (!fout.is_open()) {
+		std::cout << "Не получилось открыть фaйл out.txt" << std::endl;
+		delete[] arr1;
+		delete[] arr2;
+		return 1;
+	}
+	fout << size1 << "\n";
+	for (int i = 0; i < size1; i++) {
+		fout << arr2[i] << " ";
+	}
+	fout << std::endl;
+	fout << size << "\n";
+	for (int i = 0; i < size; i++) {
+		fout << arr1[i] << " ";
+	}
+	fout << std::endl;
+
+	delete[] arr1;
+	delete[] arr2;
+
+	fout.close();
 
 
 
