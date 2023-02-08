@@ -44,17 +44,21 @@ int main()
 	for (int i = 0; i < size1; i++) {
 		fin >> arr3[i];
 		//   arr3[i] = nambe;
-		std::cout << "i  " << i << "= " << arr3[i] << " ";
+		
+	//std::cout << "i  " << i << "= " << arr3[i] << " ";
 	}
 	//  std::cout << "\n ";
 
-	for (int i = 0; i < size1 - 1; i++) {
-		if (i == 0) arr2[i] = arr3[size1 - 1];
-		arr2[i] = arr3[i + 1];
+	for (int i = 0; i <= size1 - 1; i++) {
+		if (i == 0) {
+			arr2[i] = arr3[size1 - 1]; 
+			continue;
+		}
+		arr2[i] = arr3[i- 1];
 		//std::cout << "i  " << i << "= " << arr2[i] << " ";
 
 	}
-	arr2[size1 - 1] = arr3[0];
+	//arr2[size1 - 1] = arr3[0];
 	delete[] arr3;
 	int a = 0;
 
